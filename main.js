@@ -5,6 +5,30 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const hearts = document.querySelectorAll('.like-glyph');
+
+  hearts.forEach(heart => {
+    heart.addEventListener('click', async () => {
+      try {
+        await mimicServerCall(); // Simulate server call
+
+        if (heart.classList.contains('activated-heart')) {
+          heart.classList.remove('activated-heart');
+          heart.textContent = EMPTY_HEART;
+        } else {
+          heart.classList.add('activated-heart');
+          heart.textContent = FULL_HEART;
+        }
+
+      } catch (error) {
+        // Show error message (normally this should not happen based on given instructions)
+        console.error('Error:', error);
+        alert('Error: Failed to like. Please try again.');
+      }
+    });
+  });
+});
 
 
 //------------------------------------------------------------------------------
